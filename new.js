@@ -1,5 +1,5 @@
 /*
-new => The new keyword is used in javascript to create a object (both user defined as well as built-in) 
+new => The "new" keyword is used in javascript to create a object (both user defined as well as built-in) 
 from a constructor function.
 new keyword is used to instantiate instances of objects
 All the built in objects are in Capitalized to mimic java.
