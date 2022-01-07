@@ -36,3 +36,10 @@ try {
 finally{
     console.log("Finally Code");
 }
+
+
+//* EG: 2
+let a = 1
+if(a === 1){
+    throw new Error("Noooo a is equal to 1")
+}

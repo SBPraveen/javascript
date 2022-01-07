@@ -57,4 +57,4 @@ console.log(typeof c)
 let a = [1,2,3,4,5]
 console.log(a.indexOf(10))
 // op => -1
-// Here instead of returning -1 it would be more appropriate to return an NaN if JS couldn't find the element
+// Here instead of returning -1 it would be more appropriate to return an NaN if JS couldn't find the element(because returning an invalid no would be more appropriate than returning -1)

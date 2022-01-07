@@ -6,12 +6,10 @@
     1. undefined
     2. string 
     3. number
-    3. boolean
-    4. object
+    4. boolean
     5. symbol 
     6. null
     7. bigint
-So what about arrays => js considers them as the sub-type of the object
 
 *3. 
 All the primitive types mentioned above are not object whereas arrays, functions are objects
