@@ -53,6 +53,14 @@ let str = "      "
 if(str)
 console.log("Praveen"+ str + "ssn")
 //op => Praveen      ssn
+//Here string is implicitly converted into a boolean
+
+//* Eg:6
+let str = [1,2]
+if(str.length)
+console.log("Array"+ str.length + "length")
+//op => Praveen      ssn
+//Here number is implicitly converted into a boolean
 
 //* Eg:1 => Explicit coercion
 let arr = [12, " is ", "my ", "lucky ", "number"]
@@ -79,3 +87,5 @@ Unary plus is the fastest and preferred way of converting something into a numbe
 The unary plus operator (+) precedes its operand and evaluates to its operand but attempts to convert it into a number, if it isn't already.
 */
 //Here I'm explicitly converting a string into a number
+
+

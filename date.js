@@ -1,3 +1,10 @@
+//Easiest method
+let a = new Date()
+console.log(`${a.getDate()}\\${a.getMonth()+1}\\${a.getFullYear()} ${a.getHours()}:${a.getMinutes()}:${a.getSeconds()} `)
+// op => 11\1\2022 17:29:2 
+
+//*========================================
+
 let today = new Date();
 let todayDate = today.toLocaleDateString("en-US");
 console.log(todayDate);
