@@ -1,5 +1,6 @@
 /*
 In js type conversions are known as coercion
+||Only the BigInt type has no implicit conversions. Programmers must call BigInt explicitly to convert values from other types
 */
 
 //*Eg:1
@@ -87,5 +88,8 @@ Unary plus is the fastest and preferred way of converting something into a numbe
 The unary plus operator (+) precedes its operand and evaluates to its operand but attempts to convert it into a number, if it isn't already.
 */
 //Here I'm explicitly converting a string into a number
+
+
+
 
 
