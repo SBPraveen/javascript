@@ -6,10 +6,11 @@ console.log(`${a.getDate()}\\${a.getMonth()+1}\\${a.getFullYear()} ${a.getHours(
 //*========================================
 
 let today = new Date();
+console.log(+today) // 1642660352369
 let todayDate = today.toLocaleDateString("en-US");
-console.log(todayDate);
+console.log(todayDate); // 1/20/2022
 let [month, date, year]    = todayDate.split("/")
-console.log(date, month, year);
+console.log(date, month, year);// 20 1 2022
 
 
 //day

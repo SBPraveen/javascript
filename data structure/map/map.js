@@ -37,13 +37,14 @@ myMap.clear();
 console.log(myMap);
 
 //-----------------------------------------------------------------------------------------------
-//! Incrementing map values
+//* Incrementing map values (or) changing map values
 let myMap = new Map();
 myMap.set('jessie',0);
 if(myMap.has('jessie')){
     myMap.set('jessie', myMap.get('jessie')+1)
     console.log(myMap.get('jessie'))
 }
+//! NOTE .get() returns the reference so no need to set the values using .set() again
 
 //--------------------------------------------------------------------------------------
 

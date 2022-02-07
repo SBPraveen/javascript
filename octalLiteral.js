@@ -27,7 +27,7 @@ console.log(b)
 let a = 043
 let b = Number(a.toString(8))
 console.log(b, typeof b)
-
+//43 number
 
 //convert octal into a number
 let a = 043

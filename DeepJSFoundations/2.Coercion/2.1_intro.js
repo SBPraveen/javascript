@@ -63,6 +63,11 @@ console.log("Array"+ str.length + "length")
 //op => Praveen      ssn
 //Here number is implicitly converted into a boolean
 
+//* Eg:7
+console.log(true + true)
+//op => 2
+//Here the boolean is coerced to a number 1
+
 //* Eg:1 => Explicit coercion
 let arr = [12, " is ", "my ", "lucky ", "number"]
 console.log(typeof arr.join(""), arr.join(""))

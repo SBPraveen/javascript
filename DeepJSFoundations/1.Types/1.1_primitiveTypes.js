@@ -22,7 +22,7 @@ Js is a dynamically typed language
  */
 
 //* BigInt 
-//||In essence, BigInt allows for storing large integers, as otherwise a large numeric literal would be converted into a floating point and lose precision of the least significant digits.
+//||In essence, BigInt allows for storing large integers. If bigInts are not used, a large numeric literal would be converted into a floating point and lose precision of the least significant digits.
 //A BigInt is created by appending n to the end of an integer literal or by calling the function BigInt().
 
 let a = 123456781234567812345678123456781234567812345678123456781234567812345678

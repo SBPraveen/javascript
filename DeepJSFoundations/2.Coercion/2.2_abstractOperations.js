@@ -11,12 +11,12 @@
     *5.
         These abstract operations are recursive in nature which means that when we use ToString and it returns a value which is not a string then the ToString method is called again
     There are several abstract operations (~20). Some of the important abstract operations are
+        ? toPrimitive
+        ? toString 
+        ? toBoolean
+        ? toNumber
 */
 
-//|| ToPrimitive
-/*
-If we have an element of the object type such as an array, function etc. and we need to convert them to a Primitive type, then the ToPrimitive is used to understand the conversion process.
-It takes an optional parameter "hint"
-The hint can be a number(signif) or a string
- -1:20
-*/
+
+
+

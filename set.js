@@ -55,7 +55,7 @@ console.log(b)
 // Error => Unexpected token u in JSON at position 0
 // Reason => undefined , Functions and Symbols are not valid JSON values. So JSON.parse will not work
 //! Also NaN will not be there in the output
-//?Explanation
+//? Explanation
 let a = [1,2,1,"a","f",2,1,1,"a","f", true,null,null,undefined, NaN,{a: 1, b: 2},{a: 1, b: 2}] 
 console.log(a.map(JSON.stringify))
 /*
