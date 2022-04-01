@@ -1,3 +1,4 @@
+
 /*
 *Myth :
 Double equals checks only the values while triple equals checks the values as well as the types
@@ -78,15 +79,67 @@ Here the condition 2 is true because if one of the values is an object then the 
 console.log(a1.valueOf(), typeof a1.valueOf(), a1.valueOf() === "a");
 //op => a string true
 
+//? Eg: 2.2
+let a  = [1,2]
+let a1  = [1,2]
+console.log(a == a1);
+//false
+
+//? Eg: 2.3 => A bad example of coercion
+let no1 = 22
+let no2 = [22]
+console.log(no1 == no2);
+//💔 BTW this is a terrible comparison
+//op => true
+// no2 is coerced to a primitive(toString) which is again coerced to a number
+console.log(no2.valueOf(), no2.toString());
+
 //|| Usasge:1 of == 
 let a = null
 let s = undefined
 console.log(a == s);
 //op => true
-//Assume we dont want our if block to execute if the value is undefined or null instead of checking a===null and a===undefined, a==null does the job
+//Assume we dont want our if block to execute if the value is only undefined or null instead of checking a===null and a===undefined, a==null does the job
 if(a == null){
     console.log("The input is null or undefined");
 }
 else{
     console.log("The input is not null or undefined");
 }
+//op => The input is null or undefined
+//!Note : 
+console.log(0 == null);
+//false
+console.log(typeof null); //object
+console.log(null.toString()); //""
+console.log(Number("")); // 0 
+console.log(0 === 0); //true
+
+console.log(true == 32);// false
+//true gets coerced to a number 1
+//1=== 32 is false
+//!----------------------------------------------------------------------
+console.log(Number(null));
+/*
+ the equality check == for undefined and null is defined such that, without any conversions, they equal each other and don’t equal anything else. That’s why null == 0 is false.
+*/
+
+//|| Usasge:2 of == 
+//If we want to execute the block if the input is 9 (The ip can be a string or a number 9)
+
+let func = (ip) => {
+    if(ip == 9){
+        console.log("executed");
+    }
+} 
+func(9)
+func("9")
+
+//! Eg: 3
+console.log("3.0" == "3");
+//op => false
+//Since both are strings(same type => so ===) it tries to do an exact match
+console.log("3.0" == 3);
+//op => true
+// Here the string 3.0 is coerced to a number 3
+

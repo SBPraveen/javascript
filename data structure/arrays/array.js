@@ -147,6 +147,19 @@ nos.forEach((no,index)=>{
 
 
 
+//!NOTEEEEEEEE🤐🤐🤐🤐🤐🤐🤐
+let a = ["js", "aws", "react"]
+for(let i in a){
+    console.log(i, typeof i);
+}
+/*
+0 string
+1 string
+2 string
+*/
+/*
+*NOTE i is a string
+ */
 
 //! Important questions 
 

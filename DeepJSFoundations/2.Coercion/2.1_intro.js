@@ -1,5 +1,6 @@
 /*
 In js type conversions are known as coercion
+Converting a value from one type to another is often called "type casting," when done explicitly, and "coercion" when done implicitly (forced by the rules of how a value is used).
 ||Only the BigInt type has no implicit conversions. Programmers must call BigInt explicitly to convert values from other types
 */
 

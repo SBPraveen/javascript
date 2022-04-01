@@ -12,7 +12,7 @@ The comparison x == y, where x and y are values, produces true or false. Such a 
     7. If Type(y) is Boolean, return the result of the comparison x == ToNumber(y).
     8. If Type(x) is either String or Number and Type(y) is Object,return the result of the comparison x == ToPrimitive(y).
     9. If Type(x) is Object and Type(y) is either String or Number,return the result of the comparison ToPrimitive(x) == y.
-    10. Return false.
+    10. Return false for all the other cases.
 
 
 *NOTE 1
@@ -35,4 +35,3 @@ new String("a") == new String("a") is false.
 Comparison of Strings uses a simple equality test on sequences of code unit values. There is no attempt to use the more complex, semantically oriented definitions of character or string equality and collating order defined in the Unicode specification. Therefore Strings values that are canonically equal according to the Unicode standard could test as unequal. In effect this algorithm assumes that both Strings are already in normalised form.
 */
 
-//!!!!LEARN ENUMS IN JS

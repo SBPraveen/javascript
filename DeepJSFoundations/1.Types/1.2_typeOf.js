@@ -1,8 +1,9 @@
 /*
 || typeof
-    typeof helps us to find the type of the value stored in the variable "v".
+    typeof helps us to find the type of the value stored in the variable (and not the typeof the variable).
     typeof returns us a string which is one of the primitive types( except "null") and additionally
-    ! if the variable stores a function it returns a function
+    ! if the variable stores a function it returns a function.
+    
  */
 
 
@@ -29,19 +30,39 @@ let w = () => {
 }
 console.log(typeof q, typeof w, Array.isArray(q))
 //op
-// object function
+// object function true
+/*
+Functions are subtypes of objects
+Functions are also known as "callable objects" because they have an internal [[Call]] property that allows the functions to be called
+Functions also have properties like length etc.
+*/
+let func = (no1, no2, no3) => {
+    return no1 + no2 + no3
+}
+console.log( func.length);
+//3
+//!NOTE:
+// Using .length on a function returns the number of parameters of that function
 
 //* Eg:4
-let asd = null
-console.log(typeof asd) 
+let value = null
+console.log(typeof value) 
 //! object
 //This is a bug
+//||So how do we find whether a value is null ??
+if(!value && typeof value === "object"){
+    console.log("The value is null");
+}
+//The value is null
+
+
+
 
 //* Eg: 5
-let aja = 42n
-console.log(typeof aja)
+let value1 = 42n
+console.log(typeof value1)
 //bigint
 
 
-let a1 = new String("praveen")
-console.log(a1)
+
+

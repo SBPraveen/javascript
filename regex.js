@@ -15,6 +15,35 @@ or
 pattern => String that expresses the pattern that  the regex has to look for
 attributes => Optional string that specifies the attributes such as case insensitive, global, multi line matches 
 
+!A Regex expression is never equal to another regex expression eventhough both holds the same value
+*/
+let pattern1 = /in/g;
+let pattern2 = /in/g;
+console.log(pattern1 == pattern2, pattern1 === pattern2);
+
+//||RegExp as a normal function vs as a constructor function vs as a regex literal
+/**
+  https://stackoverflow.com/questions/1928342/javascript-using-constructor-without-operator-new
+ */
+  let str = "Sun is rises in the East"
+  let patternLiteral = /Sun/i;
+  let patternConstructor = new RegExp("Sun", 'i');
+  let patternFunction = RegExp("Sun", 'i');
+  console.log(patternLiteral, typeof patternLiteral);
+  console.log(patternConstructor, typeof patternConstructor);
+  console.log(patternFunction, typeof patternFunction);
+  console.log(patternLiteral === patternConstructor, patternConstructor ===patternFunction);
+/*
+*op=>
+  /Sun/i object
+  /Sun/i object
+  /Sun/i object
+* Interference:
+    The function call RegExp(…) is equivalent to the object creation expression new RegExp(…) with the same arguments.
+    https://262.ecma-international.org/12.0/#sec-regexp-constructor
+*/
+
+/*
 ? Modifiers
     1. g => It performs global match => returns all the instances
     2. i => It performs case insensitive matching => returns only the first instance
@@ -416,3 +445,9 @@ attributes => Optional string that specifies the attributes such as case insensi
 // console.log(patternStr)
 //op
 //   "/e/"
+
+let regex = () => {}
+export default regex
+
+
+
