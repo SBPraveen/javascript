@@ -1,12 +1,13 @@
 /*
 In js type conversions are known as coercion
 Converting a value from one type to another is often called "type casting," when done explicitly, and "coercion" when done implicitly (forced by the rules of how a value is used).
-||Only the BigInt type has no implicit conversions. Programmers must call BigInt explicitly to convert values from other types
+||Implicit coercion always result in a primitive value(except BigInt. . Programmers must call BigInt explicitly to convert values from other types) like string, number, boolean. There is no coercion that results in a object or function.
+Coercions happen at the runtime.
 */
 
 //*Eg:1
-let a = "praveen"
-console.log(a.length)
+let a1 = "praveen"
+console.log(a1.length)
 //op => 7
 /*
 Here the variable "a" is a primitive(string) and only objects have methods like "length".
@@ -15,8 +16,8 @@ This is because JS implicitly coerces the primitive string into an object when i
 */
 
 //*Eg:1.1
-let a = 16
-console.log(typeof a.toString())
+let a2 = 16
+console.log(typeof a2.toString())
 //op => string
 /*
 Here the variable "a" is a primitive(number) and only objects have methods like "toString()".
@@ -41,19 +42,19 @@ Here JS implicitly converts a number(22) into a string
 */
 
 //* Eg:4
-let arr = []
-if(arr)//coercion
-arr.push(4)
-console.log(arr)
+let arr1 = []
+if(arr1)//coercion
+arr1.push(4)
+console.log(arr1)
 // op => [ 4 ]
 /*
 Here JS implicitly converts an array into a boolean 
 */
 
 //* Eg:5
-let str = "      "
-if(str)
-console.log("Praveen"+ str + "ssn")
+let str1 = "      "
+if(str1)
+console.log("Praveen"+ str1 + "ssn")
 //op => Praveen      ssn
 //Here string is implicitly converted into a boolean
 

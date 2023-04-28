@@ -65,8 +65,8 @@ console.log(no16,no17);
 //! Both toFixed && toPrecision returns a string
 let no18 = 0.0023140100
 console.log(no18.toFixed(3));
-console.log(typeof no18.toPrecision(3));
-//op => 0.002  0.00231
+console.log(no18.toPrecision(3), typeof no18.toPrecision(3));
+//op => 0.002  string 0.00231
 
 //*4.
 /*
@@ -99,13 +99,89 @@ console.log(a + 2);
 //op => 85
 //The reason is, a is considered as an octal 
 
-//*8.🤨🤨🤨🤨🤨🤨🤨🤨🤨
+//Solutions
+
+//if the userInput is a number
+//!Note in this method if we pass a number eg 123 then also it will convert it to a octal
+let userInput1 = 0123
+userInput1 = parseInt(userInput1.toString(8), 10)
+console.log(userInput1 + 2);
+// op => 125
+
+//if the userInput is a string
+let userInput = "0123"
+userInput = parseInt(userInput, 10)
+console.log("userInput =>", userInput);
+let someCalculation = userInput + 2
+console.log(someCalculation);
+/*
+op =>
+userInput => 123
+125
+*/
+
+//*8.1
+//!Never use to fixed for rounding a number
+console.log((859.385).toFixed(2))
+console.log((859.3851).toFixed(2))
+/*
+op =>
+859.38
+859.39
+
+?The problem
+We cannot use math.round because it converts all nos into whole numbers(ie. it removes the decimal part).So generally we use toFixed to round off numbers with the deciaml part.
+But there is a problem with toFixed.
+ In the first console.log we should have got 859.39 as the output.But we got 859.38 so use this function instead of toFixed
+*/
+function rounding(num, precision){
+    let base = 10 ** precision
+     //check if a no has decimal digits(if num %1 === 0 means it is a whole no) if yes do the rounding if no return the num
+     if(num % 1 === 0){
+      return num
+    }
+    return (Math.round(num * base) / base).toFixed(precision)
+}
+console.log(rounding(859.385,2))
+console.log(rounding(859.3851,2))
+/*
+859.39
+859.39
+*/
+
+//*8.2🤨🤨🤨🤨🤨🤨🤨🤨🤨
 console.log(0.1 + 0.2 === 0.3);
 //op => false
 //The comparison results to false because 0.1 + 0.2 equals to 0.30000000000000004 and 0.30000000000000004 not equals to 0.3
 console.log(0.1 + 0.2);
 //0.30000000000000004
+
+let aa = 0.1.toPrecision(54)
+let bb = 0.2.toPrecision(54)
+console.log(aa);
+console.log(bb);
 /*
+op => 
+0.100000000000000005551115123125782702118158340454101563
+0.200000000000000011102230246251565404236316680908203125
+*/
+let ans1 = Number(aa) + Number(bb)
+console.log(ans1);
+// op=> 0.30000000000000004
+
+let cc = 0.3.toPrecision(54)
+console.log(cc);
+// op => 0.299999999999999988897769753748434595763683319091796875
+
+console.log(Number.EPSILON);
+
+
+
+
+
+/*
+It was difficult to store the floating point nos in the binary form. So programmers came up with the IEEE 754. According to the IEEE 754 standard they accepted that 1 can be represented as 0.100000000000000005551115123125782702118158340454101563 and similarly for 2 also
+
 To solve this problem the most commonly accepted practice is to use a tiny rounding error value as a tolerance for comparison. This tiny rounding error value is known as the machine epsilon
 In JS this is representes as Number.EPSILON(appox 2^(-52))
 */

@@ -6,7 +6,6 @@ So what is operator overloading??
         Suppose we have created two objects c1 and c2 from a class named Complex that represents complex numbers.
         Since operator overloading allows us to change how operators work, we can redefine how the + operator works and use it to add the complex numbers of c1 and c2
 */
-//This is an example of the + operators different functionalities
 
 //* Eg:1
 let msg1 = "Code "
@@ -16,9 +15,10 @@ console.log(msg1 + msg2 + msg3)
 // op => Code 121 is my secrete project
 /*
 The operator "+" generally does numerical operations but here since one of the variable is a string it coerces all the other variables to string and concatenates all the variables.
-Thus here the + operator is overloaded
+Here the + operator is not overloaded.
 Spec for the + operator:
     || The + operator either performs string concatenation or   numeric addition
+The + operator's dual functionality comes with the spec itself and that users cannot change the way it behaves(ie we cannot do something like "when the type of the operand is an object concatenate its properties and methods"). Thus JS doesnt support Operator overloading
 */
 //* Eg:2
 let asd = 12

@@ -21,7 +21,7 @@ function strictMode1(){
 sloppyMode1();
 strictMode1();
 //INFERENCE:
-//In strict mode if you used a variable without defining it, a reference error  will be raised whereas it will not be raised in sloppyMode.\
+//In strict mode if you used a variable without defining it, a reference error  will be raised whereas it will not be raised in sloppyMode.
 
 
 //2) Will not allow JS to assign values to getters (this happens when we forget to add setters)

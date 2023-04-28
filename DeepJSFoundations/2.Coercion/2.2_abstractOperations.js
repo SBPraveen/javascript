@@ -1,6 +1,6 @@
 /*
     *1.
-    Abstract operations are the building blocks of type conversions(coercions)
+    Abstract operations are the building blocks of coercions
     *2.
     Every time a value conversion happens, it is handled by one or more abstract operation with some rules defined in the spec.
     *3.

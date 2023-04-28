@@ -52,7 +52,7 @@ let nos10 = ['one', 'two', 'three', 'four', 'five'];
 duplicateNo1 = nos10.slice(1,3);//two,three
 duplicateNo2 = nos10.slice(-2);//four,five
 duplicateNo1[0] = 'twenty'
-console.log(`Created a shallow copy of the main array \n` + duplicateNo1 +'\n'+ duplicateNo2 +'\n'+ nos10);
+console.log(`Created a deep copy of the main array \n` + duplicateNo1 +'\n'+ duplicateNo2 +'\n'+ nos10);
 
 
 

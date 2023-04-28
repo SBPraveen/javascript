@@ -16,3 +16,16 @@ if(a === null || a === undefined ){
 if(a == undefined){
     console.log('==')
 }
+
+
+
+let name1 = {
+    firstName:"Praveen",
+    lastName:"SB",
+}
+let logger = function(age, gender){
+        console.log(this.firstName + " " + this.lastName + ". My age is "+ age+ ". My gender is "+ gender)
+    }
+let boundMethod = logger.myBind(name1, 21, "male")
+console.log(boundMethod)
+boundMethod()

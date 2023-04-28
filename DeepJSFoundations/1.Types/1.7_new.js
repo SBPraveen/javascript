@@ -22,7 +22,7 @@ All the methods mentioned above are some of the most commonly used  natives.
 They are called as natives since these are provided by JS itself. 
 These natives can be used as a constructor functions(ie. when used with the new keyword) to produce objects or used as a normal function to produce primitives. 
 *{@link constructorFunction}
-*!As the general rule, the constructor forms should generally be avoided unless we really know we have to use them .
+*!As a general rule, the constructor forms should generally be avoided unless we really know we have to use them .
 Thus it is preferable to use the natives in the literal form ie.without the new keyword 
 
 */

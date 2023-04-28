@@ -75,7 +75,31 @@ array.length = 0
 console.log(array);
 //op=> []
 
-//||Pass by values in JS
+const shallowAndDeepCopy = () => {
+/*
+||Shallow copy
+  In a shallow copy both the duplicate and the original point to the same location thus changes made to the duplicate affect the original(in non primitives).
+  For primitive values both the original and the duplicate are disconnected.
+*/
+
+//*shallow copy of non primitives
+let original12 = [1,2,3,4,5]
+let duplicate12 = original12
+duplicate12.push(11,12)
+console.log(original12);
+console.log(duplicate12);
+/*
+OP=> [
+  1,  2,  3, 4,
+  5, 11, 12
+]
+[
+  1,  2,  3, 4,
+  5, 11, 12
+]
+*/
+
+//*shallow copy of primitives
 let val1 = 2
 let val2 = val1
 console.log(val1,val2);
@@ -87,7 +111,7 @@ console.log(val1,val2);
 2 3
 */
 
-//|| Array copying => Pass by reference in JS
+//|| How values gets stored in the memory location
 //? Eg1
 let arrOrginal = [1,3,2,5,4]
 let arrDuplicate = arrOrginal
@@ -184,6 +208,7 @@ a = [21, 22, 23, 24]
                               [1,2,3,4,5]  b ➡️ [12,13,14,16]
 The array [1,2,3,4,5] is cleaned up by the garbage collector since no variable is pointing to it.
 ?Garbage Collector:
+  !Whenever we assign a new value to a variable both primitive as well as non primitive the new value gets stored in a new memory location and the variable now points at the new location and the old value gets cleared by the garbage collector
   Low level languages such as C use explicit garbage collection using methods such as malloc() and free() while high level languages such as JS the browser does automatic garbage collecion.
   In JS garbage collection is done using the Reference Counting Algorithm and the Mark and Sweep Algorithm.
 */
@@ -218,8 +243,50 @@ Explanation :
 
 */
 
+/*
+||Deep copy
+  In deep copy all the values of the new variables are copied and are disconnected from the original values.
+*/
+//*deep copy
+let original = [1,2,3,4,5]
+let duplicate = [...original]
+duplicate.push(11,12)
+console.log(original);
+console.log(duplicate);
+/*
+op =>
+[ 1, 2, 3, 4, 5]
+[1,  2,  3, 4, 5, 11, 12]
+*/
 
+//*nested objects/arrays
+/*
+The spread operator fails when we are using nested arrays
+*/
+let original1 = [[1,2], [3,4], [5,6]]
+let duplicate1 = [...original1]
+duplicate1[0].push(11,12)
+console.log(original1);
+console.log(duplicate1);
+/*
+op=>
+[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
+[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
+*/
 
+//*solution for nested objects/arrays
+
+let original2 = [[1,2], [3,4], [5,6]]
+let duplicate2 = JSON.parse(JSON.stringify(original2)) 
+duplicate2[0].push(11,12)
+console.log(original2);
+console.log(duplicate2);
+/*
+op=>
+[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
+[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
+*/
+}
 //|| Array like
 /*
 An array like is an object that has indexed properties(ie its keys are 1,2,3....) and also has a length property.
@@ -277,43 +344,4 @@ let arr = Array.from(arrLike1)
 console.log(arr);
 //op => [ 'sam', 45, 'billings', [ 1, 2, 3 ] ]
 
-
-//||Deep copy
-let original = [1,2,3,4,5]
-let duplicate = [...original]
-duplicate.push(11,12)
-console.log(original);
-console.log(duplicate);
-/*
-op =>
-[ 1, 2, 3, 4, 5]
-[1,  2,  3, 4, 5, 11, 12]
-*/
-
-//*nested objects/arrays
-/*
-The spread operator fails when we are using nested arrays
-*/
-let original1 = [[1,2], [3,4], [5,6]]
-let duplicate1 = [...original1]
-duplicate1[0].push(11,12)
-console.log(original1);
-console.log(duplicate1);
-/*
-op=>
-[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
-[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
-*/
-
-//*solution for nested objects/arrays
-
-let original2 = [[1,2], [3,4], [5,6]]
-let duplicate2 = JSON.parse(JSON.stringify(original2)) 
-duplicate2[0].push(11,12)
-console.log(original2);
-console.log(duplicate2);
-/*
-op=>
-[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
-[ [ 1, 2, 11, 12 ], [ 3, 4 ], [ 5, 6 ] ]
-*/
+export {shallowAndDeepCopy}

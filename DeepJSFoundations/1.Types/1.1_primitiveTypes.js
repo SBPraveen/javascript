@@ -1,9 +1,10 @@
 import constructorFunction from "../../functions/constructorFunction"
 import bitwiseOperator from '../../bitwiseOperators'
+import {shallowAndDeepCopy} from './1.8.1_YDKJS_ArraysAndReference'
 
 /*
 *1. In javascript everything is an object 
-    This statement is false since values like "true and "false" are not objects. But they can be represented in the form of an object.
+    This statement is false since values like "true and "false" are not objects. But everything in JS can be represented in the form of an object(including symbols).
     EG:
     */
 let bool = true 
@@ -14,11 +15,12 @@ console.log(boolObj, typeof boolObj);
 boolean
 [Boolean: true] object
 */
+
 /** 
     Js has 8 built in types => 7 primitives + object
 
 **2. Primitive types in javascript 
-    1. undefined => This is the default valuein any variable or property if no other value is present
+    1. undefined => This is the default value in any variable or property if no other value is present
     2. string 
     3. number
     4. boolean
@@ -35,13 +37,12 @@ In javascript variables don't have types but it is the values that have types. S
 **5.
 In JS the type of the value assigned to a variable decides whether the value stored is assign by value or assign by reference
 In JS all the primitive types are value assignments(pass by value) whereas the non primitives(compound values) such as objects, arrays, functions etc are reference assignments(pass by reference)
-*{@link bitwiseOperator}
+*{@link shallowAndDeepCopy}
 
 **6. 
-In a statically typed language the type of the variable is known at the compile time Eg: int a => in "C"
-Whereas in a dynamically typed language, a variabl can receive different values at the runtime ans the type of the variable is known only at the runtime
-Js is a dynamically typed language
- */
+In a statically typed language the type of the variable should be known at the compile time Eg: int a => in "C"
+Whereas in a dynamically typed  such as JS, a variable can receive different values at the runtime and thus the type of the variable is known only at the runtime
+  */
 //*Dynamically typed language:
 let val = true
 console.log(val);
@@ -76,6 +77,8 @@ true
 9999999999999999n
 */
 
+console.log(Number.MIN_SAFE_INTEGER);
+
 let a1 = -123456781234567812345678123456781234567812345678123456781234567812345678
 console.log(typeof a1, a1)
 //op
@@ -109,7 +112,18 @@ console.log(String(bint));
 123456781234567812345678123456781234567812345678123456781234567812345678
 */
 
+//||Very small numbers:
+let vsn = 0.00000000000012300000015342532
+console.log(vsn);
+//op => 1.231e-13
+//Here the value loses its precision
+//*solution use toFixed
+console.log(vsn.toFixed(18));
+//op => 0.000000000000123100
 
+//Here to argument 18npassed to tofixed cant be known so to solve it use the code snippet
+
+console.log(vsn.toFixed(vsn.toString().split('-')[1]))
 
 //|| Symbols
 /** 
@@ -128,13 +142,21 @@ const sym2 = Symbol()
 console.log(sym1)
 console.log(sym2)
 console.log(sym1 === sym2)
+
 /*
 op => 
-Symbol() 
-Symbol() 
+Symbol()
+Symbol()
 false
 */
 console.log(Symbol.toStringTag);
+
+//!symbols as an object
+const sym21 = Symbol()
+let symObject1 = Object(sym21)
+console.log(symObject1, typeof symObject1, symObject1 instanceof Symbol);
+//op => [Symbol: Symbol()] object true
+
 
 //! Eg:2
 const sym11 = new Symbol()
@@ -157,38 +179,85 @@ console.log(asdf, jkl)
 /*
 Symbols are often used to add unique property keys to an object that won’t collide with keys any other code might add to the object.(ie. The for...in loop does not iterate over a key which is of the type symbol)
 */
-let symKey1 = Symbol("id1")
-let symKey2 = Symbol("id2")
-const student = {
-    name:"praveen", 
-    age : 21,
-    [symKey1] : "This is the data that i don't want to loop",
-    [symKey2] : "This is the data that i don't want to loop"
-    //! enclose the key in square brackets => see inference
+let symbolComments = Symbol("comments")
+const DATA = [
+    {
+        "DTY_TYP": "A",
+        "NOTN": "007/2015",
+        "COMMENTS" :"This is the comments we want to display to the user",
+        [symbolComments]: "sno to be added"
+    },
+    {
+        "DTY_TYP": "A",
+        "NOTN": "007/2015",
+        "COMMENTS" :"This is the comments we want to display to the user",
+        [symbolComments]: "sno to be added"
+    },
+]
+
+console.log(DATA);
+console.log("===================================");
+const FIRST_OBJECT = DATA[0]
+for(let key in FIRST_OBJECT){
+    console.log(key)
 }
-console.log(student)
-for(let key in student){
+console.log("===================================");
+console.log(FIRST_OBJECT.symbolComments);
+/*
+op =>
+[
+  {
+    DTY_TYP: 'A',
+    NOTN: '007/2015',
+    COMMENTS: 'This is the comments we want to display to the user',
+    [Symbol(comments)]: 'sno to be added'
+  },
+  {
+    DTY_TYP: 'A',
+    NOTN: '007/2015',
+    COMMENTS: 'This is the comments we want to display to the user',
+    [Symbol(comments)]: 'sno to be added'
+  }
+]
+===================================
+DTY_TYP
+NOTN
+COMMENTS
+===================================
+undefined
+*/
+console.log(Object.getOwnPropertySymbols(FIRST_OBJECT));
+// op=> [ Symbol(comments) ]
+
+let symKey = Symbol("comments")
+const TEMPERATURE_API_RESULT = {
+    city:"Chennai", 
+    temperature : 32,
+    unit: "degree celcius",
+    [symKey] : "This temperature was recorded in Koyambedu on 23/12/22 at 2.30PM",
+    //! enclose the SYMBOL key in square brackets => see inference
+}
+console.log(TEMPERATURE_API_RESULT)
+for(let key in TEMPERATURE_API_RESULT){
 console.log(key)
 }
-console.log(student.symKey1);
-console.log(student.symKey2);
-console.log(Object.getOwnPropertySymbols(student));
-//op => 
+console.log(TEMPERATURE_API_RESULT.symKey);
+console.log(Object.getOwnPropertySymbols(TEMPERATURE_API_RESULT));
 /*
+op => 
 {
-  name: 'praveen',
-  age: 21,
-  [Symbol(id1)]: "This is the data that i don't want to loop",
-  [Symbol(id2)]: "This is the data that i don't want to loop"
+  city: 'Chennai',
+  temperature: 32,
+  unit: 'degree celcius',
+  [Symbol(comments)]: 'This temperature was recorded in Koyambedu on 23/12/22 at 2.30PM'
 }
-name
-age
+city
+temperature
+unit
 undefined
-undefined
-[ Symbol(id1), Symbol(id2) ]
-*/
-/*
-INFERENCE:
+[ Symbol(comments) ]
+
+*INFERENCE:
 !!!!!square brackets allows us to use variables as keys inside the object.
 */
 let name = "Praveen"
@@ -204,53 +273,7 @@ let obj11 = {
 console.log(obj11)
 //op => { Praveen: 'This key is my name' }
 
-//* Use-case:2
 
-let user1Id = '1234'
-let user2Id = '6789'
-let user3Id = '1234'//assume that by mistake two users are assigned the same id
-const bank = (user) => {
-switch(user){
-    case "1234":
-        return "user1Id 1234 Balance : 1200"
-    case "6789":
-        return "user2Id 6789 Balance : 20000"
-    default:
-        return "Unauthorized access"
-}
-}
-console.log(bank(user1Id))
-console.log(bank(user2Id))
-console.log(bank(user3Id))
-/*
-op => 
-user1Id 1234 Balance : 1200
-user2Id 6789 Balance : 20000
-user1Id 1234 Balance : 1200
- This can be solved by using symbols
-*/
-let user1IdSym = Symbol()
-let user2IdSym = Symbol()
-let user3IdSym = Symbol()
-const bankNew = (user) => {
-switch(user){
-    case user1IdSym:
-        return "user1Id 1234  Balance : 1200"
-    case user2IdSym:
-        return "user2Id 6789  Balance : 20000"
-    default:
-        return "Unauthorized access"
-}
-}
-console.log(bankNew(user1IdSym))
-console.log(bankNew(user2IdSym))
-console.log(bankNew(user3IdSym))
-/*
-op => 
-user1Id 1234  Balance : 1200
-user2Id 6789  Balance : 20000
-Unauthorized access
-*/
 
 //|| undefined
 //undefined means a variable has been declared but has not yet been assigned a value
@@ -309,10 +332,24 @@ let unknownVal = null
 console.log(unknownVal);
 //op => null
 
-//! NOTE : 
+//! Why it is preferential to use null as a representation of no value : 
+//*Eg1
 console.log(2 + null);
 console.log(2 + undefined);
 //op => 2 NaN
+//*Eg2
+let obj = {
+    name: undefined,
+    age: null,
+}
+console.log(JSON.stringify(obj));
+/*
+*OP =>
+{"age":null}
+
+*Inference:
+    JSON.stringify will omit the properties which has a Json unsafe value(undefined)
+*/
 
 //||null vs undefined
 /*
@@ -341,4 +378,8 @@ console.log(a);
 console.log(0.1 + 0.2 === 0.3);
 let a123= 0.3
 console.log(0.1 + 0.2  === a123);
+
+
+
+
 
